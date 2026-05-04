@@ -1,18 +1,12 @@
 <?php
-/**
- * Audit Logs API Endpoint
- * GET /php/api/audit_logs.php?action=list
- * DELETE /php/api/audit_logs.php?action=clear
- */
 
-// Configure session before starting
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_strict_mode', 1);
 ini_set('session.cookie_samesite', 'Lax');
 
 session_start();
 
-// Disable error display
+
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
 
@@ -44,7 +38,7 @@ switch ($action) {
 function listAuditLogs() {
     $pdo = getDBConnection();
 
-    // Check if audit_logs table exists
+    // Check if audit_logs table exists or not
     $stmt = $pdo->prepare("SHOW TABLES LIKE 'audit_logs'");
     $stmt->execute();
     $tableExists = $stmt->fetch();
